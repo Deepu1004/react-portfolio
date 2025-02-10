@@ -1,35 +1,14 @@
 import React, { useRef } from "react";
-import { Github, ExternalLink, Code2, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  Github,
+  ExternalLink,
+  Code2,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 
 const Projects = () => {
   const projects = [
-    {
-      title: "GesturaVision",
-      description:
-        "A virtual mouse using hand gestures, leveraging computer vision with Python and OpenCV.",
-      image: "projects/project-1.png",
-      github: "https://github.com/Deepu1004/GesturaVision",
-      demo: "",
-      tags: ["Python", "OpenCV", "Computer Vision"],
-    },
-    {
-      title: "ChronoSphere",
-      description:
-        "A news aggregator that scrapes news from six top English news websites like CNN, BBC, AP, Times of India, etc.",
-      image: "projects/project-2.png",
-      github: "https://github.com/Deepu1004/ChronoSphere",
-      demo: "https://the-news-mania-nu.vercel.app/",
-      tags: ["React", "Node.js", "Web Scraping"],
-    },
-    {
-      title: "HyperOptiDetect-X",
-      description:
-        "An object detection project that identifies various objects using YOLOv10 and the COCO dataset.",
-      image: "projects/project-6.png",
-      github: "https://github.com/Deepu1004/HyperOptiDetect-X",
-      demo: "",
-      tags: ["Python", "YOLOv10", "Computer Vision"],
-    },
     {
       title: "J.A.R.V.I.S - Personal Assistant",
       description:
@@ -39,7 +18,61 @@ const Projects = () => {
       github:
         "https://github.com/Deepu1004/J.A.R.V.I.S-Personal-Assistant-with-GUI",
       demo: "",
-      tags: ["Python", "NLP", "GUI"],
+      tags: ["Python", "Speech Recognition", "Tkinter (GUI)"],
+    },
+    {
+      title: "ChronoSphere",
+      description:
+        "A time management and productivity tool that helps users track tasks, set reminders, and visualize their schedules.",
+      image: "projects/project-2.png",
+      github: "https://github.com/Deepu1004/ChronoSphere",
+      demo: "https://the-news-mania-nu.vercel.app/",
+      tags: ["Flask", "Web Scraping", "BeautifulSoup4"],
+    },
+    {
+      title: "HyperOptiDetect-X",
+      description:
+        "A high-performance web application for real-time object detection in images and videos using YOLOv10.",
+      image: "projects/project-6.png",
+      github: "https://github.com/Deepu1004/HyperOptiDetect-X",
+      demo: "",
+      tags: ["Python", "Flask", "YOLOv10", "Computer Vision"],
+    },
+    {
+      title: "GesturaVision",
+      description:
+        "A virtual mouse interface that allows users to control their computer's mouse using hand gestures.",
+      image: "projects/project-1.png",
+      github: "https://github.com/Deepu1004/GesturaVision",
+      demo: "",
+      tags: ["Python", "OpenCV", "Computer Vision", "PyAutoGUI"],
+    },
+    {
+      title: "HeroesDek",
+      description:
+        "This web application allows users to search for Marvel superheroes using the Marvel API.",
+      image: "projects/project-4.png",
+      github: "https://github.com/Deepu1004/Marvel-HeroesDek",
+      demo: "https://deepu1004.github.io/Marvel-HeroesDek/",
+      tags: ["HTML/CSS", "Javascript", "Marvel API"],
+    },
+    {
+      title: "TicTacToe",
+      description:
+        "TicTacToe Game where users can either challenge a friend or test their skills against the AI opponent!",
+      image: "projects/project-7.png",
+      github: "https://github.com/Deepu1004/Tic-Tac-Toe",
+      demo: "https://deepu1004.github.io/Tic-Tac-Toe/",
+      tags: ["HTML/CSS", "Javascript"],
+    },
+    {
+      title: "Weather Forecast",
+      description:
+        "A simple and responsive weather application that provides real-time weather updates",
+      image: "projects/project-3.png",
+      github: "https://github.com/Deepu1004/Weather-Forecast",
+      demo: "https://deepu1004.github.io/Weather-Forecast/",
+      tags: ["HTML/CSS", "Javascript", "OpenWeather API"],
     },
   ];
 
@@ -111,7 +144,9 @@ const Projects = () => {
                       <h3 className="text-lg font-semibold text-gray-800 mb-2">
                         {project.title}
                       </h3>
-                      <p className="text-gray-600 mb-2 text-sm">{project.description}</p>
+                      <p className="text-gray-600 mb-2 text-sm">
+                        {project.description}
+                      </p>
                       <div className="flex flex-wrap gap-1 mb-4">
                         {project.tags.map((tag, tagIndex) => (
                           <span
