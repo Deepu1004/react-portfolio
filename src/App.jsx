@@ -6,6 +6,7 @@ import About from './components/About';
 import Projects from './components/Projects'; 
 import Skills from './components/Skills'; 
 import Contact from './components/Contact'; 
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   return (
@@ -17,10 +18,13 @@ function App() {
         <Projects />
         <Skills />
         <Contact />
+        <Analytics />
       </main>
       <footer className="bg-gray-50 py-8">
         <div className="max-w-6xl mx-auto px-4 text-center text-gray-600">
-          <p>© {new Date().getFullYear()} Deepu Varanasi. All rights reserved.</p>
+          <p>
+            © {new Date().getFullYear()} Deepu Varanasi. All rights reserved.
+          </p>
         </div>
       </footer>
     </div>
