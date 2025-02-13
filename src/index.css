@@ -6,3 +6,20 @@ html {
     scroll-behavior: smooth;
 }
 
+@keyframes animate {
+    from {
+        opacity: 0;
+        scale: 0.5;
+    }
+
+    to {
+        opacity: 1;
+        scale: 1;
+    }
+}
+
+.block-animate {
+    animation: animate linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 40%;
+}

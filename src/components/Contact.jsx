@@ -43,7 +43,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="py-24 bg-gradient-to-b from-white to-blue-50"
+      className="block-animate py-24 bg-gradient-to-b from-white to-blue-50"
     >
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-20">

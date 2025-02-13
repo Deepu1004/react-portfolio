@@ -94,7 +94,7 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="py-24 bg-gradient-to-b from-white to-blue-50 overflow-hidden"
+      className="block-animate py-24 bg-gradient-to-b from-white to-blue-50 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-20">

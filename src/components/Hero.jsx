@@ -7,7 +7,7 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-blue-50"
+      className="block-animate min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-blue-50"
     >
       <div className="max-w-7xl mx-auto px-6 py-24">
         <div className="grid md:grid-cols-2 gap-16 items-center">
