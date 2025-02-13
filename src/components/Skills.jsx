@@ -58,21 +58,22 @@ const Skills = () => {
     {
       name: "LeetCode",
       url: "https://leetcode.com/u/DeepuVaranasi/",
-      problems: "200+ Problems",
-      rating: "1600+",
+      problems: "250+ Problems",
+      rating: "1700+",
       icon: "/logos/leetcode-logo.png",
     },
     {
       name: "CodeChef",
       url: "https://www.codechef.com/users/saideepak0402",
       problems: "150+ Problems",
-      rating: "3★",
+      rating: "1700+",
+      stars: "3★",
       icon: "/logos/codechef-logo.png",
     },
     {
       name: "CodingNinjas",
       url: "https://www.naukri.com/code360/profile/DeepuVaranasi",
-      problems: "100+ Problems",
+      problems: "150+ Problems",
       rating: "Ninja",
       icon: "/logos/coding-ninjas-logo.png",
     },
@@ -150,7 +151,7 @@ const Skills = () => {
               >
                 <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative">
                   <div className="absolute top-4 right-4">
-                    <ExternalLink className="w-4 h-4 text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <ExternalLink className="w-5 h-5 text-blue-600 opacity-50 transition-all duration-300 ease-out group-hover:scale-110 group-hover:opacity-100 group-hover:translate-y-[-2px]" />
                   </div>
                   <div className="flex items-center gap-3 mb-4">
                     <img
@@ -163,18 +164,37 @@ const Skills = () => {
                     </h4>
                   </div>
                   <div className="space-y-2">
-                    <p className="text-gray-600">
-                      Solved:{" "}
-                      <span className="font-semibold text-gray-800">
-                        {profile.problems}
-                      </span>
-                    </p>
-                    <p className="text-gray-600">
-                      Rating:{" "}
-                      <span className="font-semibold text-gray-800">
-                        {profile.rating}
-                      </span>
-                    </p>
+                    {profile.name !== "CodeChef" && (
+                      <p className="text-gray-600">
+                        Solved:{" "}
+                        <span className="font-semibold text-gray-800">
+                          {profile.problems}
+                        </span>
+                      </p>
+                    )}
+                    {profile.name === "CodeChef" ? (
+                      <>
+                        <p className="text-gray-600">
+                          Stars:{" "}
+                          <span className="font-semibold text-gray-800">
+                            {profile.stars}
+                          </span>
+                        </p>
+                        <p className="text-gray-600">
+                          Rating:{" "}
+                          <span className="font-semibold text-gray-800">
+                            {profile.rating}
+                          </span>
+                        </p>
+                      </>
+                    ) : (
+                      <p className="text-gray-600">
+                        Rating:{" "}
+                        <span className="font-semibold text-gray-800">
+                          {profile.rating}
+                        </span>
+                      </p>
+                    )}
                   </div>
                   <div className="mt-4 h-1 w-0 bg-blue-600 transition-all duration-300 group-hover:w-full"></div>
                 </div>

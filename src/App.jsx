@@ -20,9 +20,9 @@ function App() {
         <Contact />
         <Analytics />
       </main>
-      <footer className="bg-gray-50 py-8">
+      <footer className="bg-blue py-8">
         <div className="max-w-6xl mx-auto px-4 text-center text-gray-600">
-          <p>
+          <p className="text-sm md:text-base font-medium">
             © {new Date().getFullYear()} Deepu Varanasi. All rights reserved.
           </p>
         </div>

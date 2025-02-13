@@ -12,11 +12,11 @@ const Hero = () => {
       <div className="max-w-7xl mx-auto px-6 py-24">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <div className="space-y-8">
-            <div className="inline-flex items-center px-4 py-2 bg-blue-100/50 rounded-full text-blue-700 text-sm font-medium">
+            <div className="inline-flex items-center px-6 py-3 bg-blue-100/50 rounded-full text-blue-700 text-sm font-medium shadow-md hover:scale-105 transition-all">
               <Sparkles className="w-4 h-4 mr-2" />
               Full Stack Developer
             </div>
-            <h1 className="text-6xl md:text-7xl font-extrabold leading-tight">
+            <h1 className="text-6xl md:text-7xl font-extrabold leading-tight tracking-tight text-blue-900">
               Building{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">
                 Innovative
@@ -34,7 +34,7 @@ const Hero = () => {
               programming, I am always striving to deliver top-tier,
               high-performance applications.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-6">
               <a
                 href={resume}
                 download
@@ -61,7 +61,7 @@ const Hero = () => {
             <img
               src={profileImageUrl}
               alt="Profile"
-              className="relative rounded-3xl shadow-2xl transform hover:scale-[1.02] transition-transform duration-300 w-full object-cover aspect-[4/5]"
+              className="relative rounded-3xl shadow-2xl transform hover:scale-[1.05] transition-transform duration-300 w-full object-cover aspect-[4/5]"
             />
           </div>
         </div>

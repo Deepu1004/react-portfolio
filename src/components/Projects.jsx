@@ -2,7 +2,6 @@ import React, { useRef, useState } from "react";
 import {
   Github,
   ExternalLink,
-  Code2,
   ChevronLeft,
   ChevronRight,
   Sparkles,
@@ -10,12 +9,25 @@ import {
 
 const Projects = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const containerRef = useRef(null);
+
+  const scrollLeft = () => {
+    if (containerRef.current) {
+      containerRef.current.scrollBy({ left: -300, behavior: "smooth" });
+    }
+  };
+
+  const scrollRight = () => {
+    if (containerRef.current) {
+      containerRef.current.scrollBy({ left: 300, behavior: "smooth" });
+    }
+  };
 
   const projects = [
     {
       title: "J.A.R.V.I.S - Personal Assistant",
       description:
-        "A voice and chat bot with a GUI interface, designed to assist users with various tasks.",
+        "J.A.R.V.I.S is an intelligent voice and chat assistant designed for seamless interaction using voice or text commands.",
       image:
         "https://images.unsplash.com/photo-1496171367470-9ed9a91ea931?auto=format&fit=crop&q=80&w=600",
       github:
@@ -26,7 +38,7 @@ const Projects = () => {
     {
       title: "ChronoSphere",
       description:
-        "A time management and productivity tool that helps users track tasks, set reminders, and visualize their schedules.",
+        "A responsive and user-friendly news aggregator built with Flask and web scraping techniques. It allows users to explore headlines from various popular news sources.",
       image: "projects/project-2.png",
       github: "https://github.com/Deepu1004/ChronoSphere",
       demo: "https://the-news-mania-nu.vercel.app/",
@@ -35,7 +47,7 @@ const Projects = () => {
     {
       title: "HyperOptiDetect-X",
       description:
-        "A high-performance web application for real-time object detection in images and videos using YOLOv10.",
+        "HyperOptiDetect-X is an object detection tool using YOLOv10, enabling fast and accurate analysis of images and videos.",
       image: "projects/project-6.png",
       github: "https://github.com/Deepu1004/HyperOptiDetect-X",
       demo: "",
@@ -44,7 +56,7 @@ const Projects = () => {
     {
       title: "GesturaVision",
       description:
-        "A virtual mouse interface that allows users to control their computer's mouse using hand gestures.",
+        "This GesturaVision Interface uses hand gestures to control your computer's mouse, offering intuitive navigation with real-time hand tracking",
       image: "projects/project-1.png",
       github: "https://github.com/Deepu1004/GesturaVision",
       demo: "",
@@ -53,7 +65,7 @@ const Projects = () => {
     {
       title: "HeroesDek",
       description:
-        "This web application allows users to search for Marvel superheroes using the Marvel API.",
+        "HeroesDek is a Marvel superhero search engine that allows users to find detailed information about their favorite characters using the Marvel API",
       image: "projects/project-4.png",
       github: "https://github.com/Deepu1004/Marvel-HeroesDek",
       demo: "https://deepu1004.github.io/Marvel-HeroesDek/",
@@ -62,7 +74,7 @@ const Projects = () => {
     {
       title: "TicTacToe",
       description:
-        "TicTacToe Game where users can either challenge a friend or test their skills against the AI opponent!",
+        "Tic-Tac-Toe: A Classic with Style offers a sleek, interactive experience with two game modes: player vs player and player vs AI.",
       image: "projects/project-7.png",
       github: "https://github.com/Deepu1004/Tic-Tac-Toe",
       demo: "https://deepu1004.github.io/Tic-Tac-Toe/",
@@ -71,27 +83,13 @@ const Projects = () => {
     {
       title: "Weather Forecast",
       description:
-        "A simple and responsive weather application that provides real-time weather updates",
+        "Weather-Forecast-App is a responsive app that provides real-time weather updates, showing temperature, humidity, wind speed, and conditions using the OpenWeatherMap API.",
       image: "projects/project-3.png",
       github: "https://github.com/Deepu1004/Weather-Forecast",
       demo: "https://deepu1004.github.io/Weather-Forecast/",
       tags: ["HTML/CSS", "Javascript", "OpenWeather API"],
     },
   ];
-
-  const containerRef = useRef(null);
-
-  const scrollLeft = () => {
-    if (containerRef.current) {
-      containerRef.current.scrollLeft -= containerRef.current.offsetWidth / 2;
-    }
-  };
-
-  const scrollRight = () => {
-    if (containerRef.current) {
-      containerRef.current.scrollLeft += containerRef.current.offsetWidth / 2;
-    }
-  };
 
   return (
     <section
@@ -114,7 +112,7 @@ const Projects = () => {
         </div>
 
         <div className="relative">
-          <div className="absolute inset-0  pointer-events-none z-10" />
+          <div className="absolute inset-0 pointer-events-none z-10" />
 
           <div className="flex items-center">
             <button
@@ -130,10 +128,7 @@ const Projects = () => {
             <div
               ref={containerRef}
               className="w-full overflow-x-auto scroll-smooth hide-scrollbar"
-              style={{
-                scrollbarWidth: "none",
-                msOverflowStyle: "none",
-              }}
+              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
             >
               <div className="flex space-x-6 px-8 py-4">
                 {projects.map((project, index) => (

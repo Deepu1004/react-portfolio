@@ -66,7 +66,7 @@ const Contact = () => {
 
         <div className="grid md:grid-cols-2 gap-16">
           <div className="space-y-8">
-            <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-300">
               <h3 className="text-2xl font-bold text-gray-800 mb-6">
                 Let's Connect
               </h3>
@@ -115,7 +115,7 @@ const Contact = () => {
 
           <form
             onSubmit={handleSubmit}
-            className="bg-white p-8 rounded-2xl shadow-lg space-y-6 border border-gray-100"
+            className="bg-white p-8 rounded-2xl shadow-lg space-y-6 border border-gray-100 hover:shadow-2xl transition-all duration-300"
           >
             <div>
               <label
