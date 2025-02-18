@@ -6,6 +6,7 @@ import {
   Library,
   Languages,
   ExternalLink,
+  Sparkles,
 } from "lucide-react";
 
 const Skills = () => {
@@ -89,15 +90,25 @@ const Skills = () => {
   return (
     <section
       id="skills"
-      className="block-animate py-24 bg-gradient-to-b from-white to-blue-50"
+      className="block-animate py-24 bg-gradient-to-b from-white to-blue-50 relative overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-4">
+      {/* Background decoration */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-200 rounded-full opacity-20 blur-3xl" />
+        <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-blue-300 rounded-full opacity-20 blur-3xl" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 relative z-10">
         <div className="text-center mb-20">
-          <h2 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">
+          <div className="inline-flex items-center px-4 py-2 bg-blue-100/50 rounded-full text-blue-700 text-sm font-medium mb-4">
+            <Sparkles className="w-4 h-4 mr-2" />
+            Technical Proficiency
+          </div>
+          <h2 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 mb-4">
             Skills & Expertise
           </h2>
           <div className="mt-4 flex justify-center">
-            <div className="h-1 w-24 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full"></div>
+            <div className="h-1 w-24 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full shine"></div>
           </div>
         </div>
 
@@ -105,12 +116,14 @@ const Skills = () => {
           {skillCategories.map((category, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
+              className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 overflow-hidden group hover:-translate-y-2"
             >
               <div className="p-6">
                 <div className="flex items-center gap-3 mb-6">
-                  {category.icon}
-                  <h3 className="text-2xl font-bold text-blue-600">
+                  <div className="p-2 bg-blue-50 rounded-lg float group-hover:scale-110 transition-transform duration-300">
+                    {category.icon}
+                  </div>
+                  <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
                     {category.title}
                   </h3>
                 </div>
@@ -118,14 +131,14 @@ const Skills = () => {
                   {category.skills.map((skill, skillIndex) => (
                     <div
                       key={skillIndex}
-                      className="bg-blue-50 rounded-lg p-3 flex items-center justify-center gap-2 group-hover:bg-blue-100 transition-colors duration-300"
+                      className="bg-gradient-to-r from-blue-50 to-blue-100/50 rounded-lg p-3 flex items-center justify-center gap-2 group-hover:from-blue-100 group-hover:to-blue-200/50 transition-all duration-300 hover:scale-105"
                     >
                       <img
                         src={skill.image}
                         alt={skill.name}
-                        className="w-4 h-4 object-contain"
+                        className="w-5 h-5 object-contain"
                       />
-                      <span className="text-gray-800 font-medium">
+                      <span className="text-gray-700 font-medium">
                         {skill.name}
                       </span>
                     </div>
@@ -136,10 +149,20 @@ const Skills = () => {
           ))}
         </div>
 
-        <div className="mt-20">
-          <h3 className="text-3xl font-bold text-center text-blue-600 mb-12">
-            Coding Profiles
-          </h3>
+        <div className="mt-32">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center px-4 py-2 bg-blue-100/50 rounded-full text-blue-700 text-sm font-medium mb-4">
+              <Sparkles className="w-4 h-4 mr-2" />
+              Problem Solving
+            </div>
+            <h3 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+              Coding Profiles
+            </h3>
+            <div className="mt-4 flex justify-center">
+              <div className="h-1 w-16 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full shine"></div>
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {codingProfiles.map((profile, index) => (
               <a
@@ -149,54 +172,62 @@ const Skills = () => {
                 rel="noopener noreferrer"
                 className="group"
               >
-                <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative">
-                  <div className="absolute top-4 right-4">
-                    <ExternalLink className="w-5 h-5 text-blue-600 opacity-50 transition-all duration-300 ease-out group-hover:scale-110 group-hover:opacity-100 group-hover:translate-y-[-2px]" />
+                <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 relative overflow-hidden">
+                  {/* Hover effect overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-blue-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                  <div className="absolute top-4 right-4 transform translate-y-2 opacity-50 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                    <ExternalLink className="w-5 h-5 text-blue-600" />
                   </div>
+
                   <div className="flex items-center gap-3 mb-4">
-                    <img
-                      src={profile.icon}
-                      alt={profile.name}
-                      className="w-8 h-8 object-contain"
-                    />
-                    <h4 className="text-xl font-bold text-blue-600">
+                    <div className="p-2 bg-blue-50 rounded-lg float">
+                      <img
+                        src={profile.icon}
+                        alt={profile.name}
+                        className="w-8 h-8 object-contain"
+                      />
+                    </div>
+                    <h4 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
                       {profile.name}
                     </h4>
                   </div>
-                  <div className="space-y-2">
+
+                  <div className="space-y-3">
                     {profile.name !== "CodeChef" && (
-                      <p className="text-gray-600">
-                        Solved:{" "}
-                        <span className="font-semibold text-gray-800">
+                      <div className="flex items-center justify-between bg-blue-50 rounded-lg px-3 py-2">
+                        <span className="text-gray-600">Solved:</span>
+                        <span className="font-semibold text-blue-600">
                           {profile.problems}
                         </span>
-                      </p>
+                      </div>
                     )}
                     {profile.name === "CodeChef" ? (
                       <>
-                        <p className="text-gray-600">
-                          Stars:{" "}
-                          <span className="font-semibold text-gray-800">
+                        <div className="flex items-center justify-between bg-blue-50 rounded-lg px-3 py-2">
+                          <span className="text-gray-600">Stars:</span>
+                          <span className="font-semibold text-blue-600">
                             {profile.stars}
                           </span>
-                        </p>
-                        <p className="text-gray-600">
-                          Rating:{" "}
-                          <span className="font-semibold text-gray-800">
+                        </div>
+                        <div className="flex items-center justify-between bg-blue-50 rounded-lg px-3 py-2">
+                          <span className="text-gray-600">Rating:</span>
+                          <span className="font-semibold text-blue-600">
                             {profile.rating}
                           </span>
-                        </p>
+                        </div>
                       </>
                     ) : (
-                      <p className="text-gray-600">
-                        Rating:{" "}
-                        <span className="font-semibold text-gray-800">
+                      <div className="flex items-center justify-between bg-blue-50 rounded-lg px-3 py-2">
+                        <span className="text-gray-600">Rating:</span>
+                        <span className="font-semibold text-blue-600">
                           {profile.rating}
                         </span>
-                      </p>
+                      </div>
                     )}
                   </div>
-                  <div className="mt-4 h-1 w-0 bg-blue-600 transition-all duration-300 group-hover:w-full"></div>
+
+                  <div className="mt-4 h-0.5 w-0 bg-gradient-to-r from-blue-600 to-blue-400 transition-all duration-300 group-hover:w-full rounded-full"></div>
                 </div>
               </a>
             ))}

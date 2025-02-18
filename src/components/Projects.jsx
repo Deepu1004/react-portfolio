@@ -13,17 +13,26 @@ const Projects = () => {
 
   const scrollLeft = () => {
     if (containerRef.current) {
-      containerRef.current.scrollBy({ left: -300, behavior: "smooth" });
+      containerRef.current.scrollBy({ left: -430, behavior: "smooth" });
     }
   };
 
   const scrollRight = () => {
     if (containerRef.current) {
-      containerRef.current.scrollBy({ left: 300, behavior: "smooth" });
+      containerRef.current.scrollBy({ left: 430, behavior: "smooth" });
     }
   };
 
   const projects = [
+    {
+      title: "ChronoSphere",
+      description:
+        "A responsive and user-friendly news aggregator built with Flask and web scraping techniques. It allows users to explore headlines from various popular news sources.",
+      image: "projects/project-2.png",
+      github: "https://github.com/Deepu1004/ChronoSphere",
+      demo: "https://the-news-mania-nu.vercel.app/",
+      tags: ["Flask", "Web Scraping", "BeautifulSoup4"],
+    },
     {
       title: "J.A.R.V.I.S - Personal Assistant",
       description:
@@ -34,15 +43,6 @@ const Projects = () => {
         "https://github.com/Deepu1004/J.A.R.V.I.S-Personal-Assistant-with-GUI",
       demo: "",
       tags: ["Python", "Speech Recognition", "Tkinter (GUI)"],
-    },
-    {
-      title: "ChronoSphere",
-      description:
-        "A responsive and user-friendly news aggregator built with Flask and web scraping techniques. It allows users to explore headlines from various popular news sources.",
-      image: "projects/project-2.png",
-      github: "https://github.com/Deepu1004/ChronoSphere",
-      demo: "https://the-news-mania-nu.vercel.app/",
-      tags: ["Flask", "Web Scraping", "BeautifulSoup4"],
     },
     {
       title: "HyperOptiDetect-X",
@@ -172,7 +172,7 @@ const Projects = () => {
                               href={project.github}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="text-blue-600 hover:text-blue-800 transition-colors duration-300 flex items-center gap-2 text-sm font-medium"
+                              className="text-blue-600  transition-colors duration-300 flex items-center gap-2 text-sm font-medium hover:text-blue-800"
                             >
                               <Github size={18} />
                               <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
