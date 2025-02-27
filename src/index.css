@@ -6,23 +6,6 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Base animations */
-@keyframes animate {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-.block-animate {
-    animation: animate linear;
-    animation-timeline: view();
-    animation-range: entry 0% cover 40%;
-}
-
 /* Slide animations */
 @keyframes slideInRight {
     from {

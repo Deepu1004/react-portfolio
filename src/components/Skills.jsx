@@ -90,7 +90,7 @@ const Skills = () => {
   return (
     <section
       id="skills"
-      className="block-animate py-24 bg-gradient-to-b from-white to-blue-50 relative overflow-hidden"
+      className="py-24 bg-gradient-to-b from-white to-blue-50 relative overflow-hidden"
     >
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden">
@@ -100,13 +100,16 @@ const Skills = () => {
 
       <div className="max-w-7xl mx-auto px-4 relative z-10">
         <div className="text-center mb-20">
+          <h2 className="text-5xl font-bold py-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 mb-4">
+            Skills & Expertise
+          </h2>
           <div className="inline-flex items-center px-4 py-2 bg-blue-100/50 rounded-full text-blue-700 text-sm font-medium mb-4">
             <Sparkles className="w-4 h-4 mr-2" />
             Technical Proficiency
           </div>
-          <h2 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 mb-4">
-            Skills & Expertise
-          </h2>
+          <div className="mt-4 flex justify-center">
+            <div className="h-1 w-20 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full"></div>
+          </div>
           <div className="mt-4 flex justify-center">
             <div className="h-1 w-24 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full shine"></div>
           </div>
@@ -150,14 +153,17 @@ const Skills = () => {
         </div>
 
         <div className="mt-32">
-          <div className="text-center mb-12">
+          <div className="text-center">
+            <h2 className="text-5xl font-bold py-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 mb-4">
+              Coding Profiles
+            </h2>
             <div className="inline-flex items-center px-4 py-2 bg-blue-100/50 rounded-full text-blue-700 text-sm font-medium mb-4">
               <Sparkles className="w-4 h-4 mr-2" />
               Problem Solving
             </div>
-            <h3 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
-              Coding Profiles
-            </h3>
+            <div className="mt-4 flex justify-center">
+              <div className="h-1 w-20 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full"></div>
+            </div>{" "}
             <div className="mt-4 flex justify-center">
               <div className="h-1 w-16 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full shine"></div>
             </div>

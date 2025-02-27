@@ -94,11 +94,11 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="block-animate py-24 bg-gradient-to-b from-white to-blue-50 overflow-hidden"
+      className="py-24 bg-gradient-to-b from-white to-blue-50 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-20">
-          <h2 className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent inline-block mt-4 py-1 mb-2">
+          <h2 className="text-5xl font-bold py-1 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent inline-block mt-4 py-1 mb-2">
             My Work
           </h2>
           <br />
