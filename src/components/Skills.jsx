@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import {
   Code2,
   Database,
@@ -7,9 +7,78 @@ import {
   Languages,
   ExternalLink,
   Sparkles,
+  Zap,
 } from "lucide-react";
 
 const Skills = () => {
+  const skillsRef = useRef(null);
+  const profilesRef = useRef(null);
+  const categoryRefs = useRef([]);
+  const profileCardRefs = useRef([]);
+  const particlesRef = useRef(null);
+
+  useEffect(() => {
+    // Intersection Observer for animations
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate-in");
+          }
+        });
+      },
+      { threshold: 0.1 },
+    );
+
+    // Observe skill categories
+    if (categoryRefs.current) {
+      categoryRefs.current.forEach((ref) => {
+        if (ref) {
+          ref.classList.add("animate-hidden");
+          observer.observe(ref);
+        }
+      });
+    }
+
+    // Observe profile cards
+    if (profileCardRefs.current) {
+      profileCardRefs.current.forEach((ref) => {
+        if (ref) {
+          ref.classList.add("animate-hidden");
+          observer.observe(ref);
+        }
+      });
+    }
+
+    // Observe section headers
+    if (skillsRef.current) {
+      skillsRef.current.classList.add("animate-hidden");
+      observer.observe(skillsRef.current);
+    }
+
+    if (profilesRef.current) {
+      profilesRef.current.classList.add("animate-hidden");
+      observer.observe(profilesRef.current);
+    }
+
+   
+    return () => {
+      if (categoryRefs.current) {
+        categoryRefs.current.forEach((ref) => {
+          if (ref) observer.unobserve(ref);
+        });
+      }
+      if (profileCardRefs.current) {
+        profileCardRefs.current.forEach((ref) => {
+          if (ref) observer.unobserve(ref);
+        });
+      }
+      if (skillsRef.current) observer.unobserve(skillsRef.current);
+      if (profilesRef.current) observer.unobserve(profilesRef.current);
+    };
+  }, []);
+
+  
   const skillCategories = [
     {
       title: "Languages",
@@ -90,28 +159,39 @@ const Skills = () => {
   return (
     <section
       id="skills"
-      className="py-24 bg-gradient-to-b from-white to-blue-50 relative overflow-hidden"
+      className="py-24 bg-gradient-to-b from-white to-blue-0 relative overflow-hidden"
+      ref={particlesRef}
     >
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-200 rounded-full opacity-20 blur-3xl" />
-        <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-blue-300 rounded-full opacity-20 blur-3xl" />
+        <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-200 rounded-full opacity-20 blur-3xl animate-pulse" />
+        <div
+          className="absolute -bottom-24 -left-24 w-96 h-96 bg-blue-300 rounded-full opacity-20 blur-3xl animate-pulse"
+          style={{ animationDelay: "1s" }}
+        />
+        <div
+          className="absolute top-1/2 left-1/4 w-64 h-64 bg-blue-100 rounded-full opacity-10 blur-2xl animate-float"
+          style={{ animationDelay: "0.5s" }}
+        />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 relative z-10">
-        <div className="text-center mb-20">
-          <h2 className="text-5xl font-bold py-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 mb-4">
+        <div className="text-center mb-20" ref={skillsRef}>
+          <h2 className="text-5xl font-bold py-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 mb-2 animate-shimmer">
             Skills & Expertise
           </h2>
-          <div className="inline-flex items-center px-4 py-2 bg-blue-100/50 rounded-full text-blue-700 text-sm font-medium mb-4">
-            <Sparkles className="w-4 h-4 mr-2" />
+          <div
+            className="inline-flex items-center px-4 py-2 bg-blue-100/50 rounded-full text-blue-700 text-sm font-medium mb-2 animate-fadeIn"
+            style={{ animationDelay: "0.3s" }}
+          >
+            <Sparkles className="w-4 h-4 mr-2 animate-pulse" />
             Technical Proficiency
           </div>
-          <div className="mt-4 flex justify-center">
-            <div className="h-1 w-20 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full"></div>
-          </div>
-          <div className="mt-4 flex justify-center">
-            <div className="h-1 w-24 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full shine"></div>
+          <div className="mt-2 flex justify-center">
+            <div
+              className="h-1 w-20 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full animate-scaleIn"
+              style={{ animationDelay: "0.9s" }}
+            ></div>
           </div>
         </div>
 
@@ -119,11 +199,16 @@ const Skills = () => {
           {skillCategories.map((category, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 overflow-hidden group hover:-translate-y-2"
+              ref={(el) => (categoryRefs.current[index] = el)}
+              className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 overflow-hidden group hover:-translate-y-2 glow"
+              style={{ animationDelay: `${index * 150}ms` }}
             >
               <div className="p-6">
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="p-2 bg-blue-50 rounded-lg float group-hover:scale-110 transition-transform duration-300">
+                  <div
+                    className="p-2 bg-blue-50 rounded-lg animate-float group-hover:scale-110 transition-transform duration-300"
+                    style={{ animationDelay: `${index * 0.2}s` }}
+                  >
                     {category.icon}
                   </div>
                   <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
@@ -135,11 +220,15 @@ const Skills = () => {
                     <div
                       key={skillIndex}
                       className="bg-gradient-to-r from-blue-50 to-blue-100/50 rounded-lg p-3 flex items-center justify-center gap-2 group-hover:from-blue-100 group-hover:to-blue-200/50 transition-all duration-300 hover:scale-105"
+                      style={{
+                        animationDelay: `${(index * 5 + skillIndex) * 100}ms`,
+                      }}
                     >
                       <img
                         src={skill.image}
                         alt={skill.name}
-                        className="w-5 h-5 object-contain"
+                        className="w-5 h-5 object-contain group-hover:animate-bounce"
+                        style={{ animationDelay: `${skillIndex * 0.1}s` }}
                       />
                       <span className="text-gray-700 font-medium">
                         {skill.name}
@@ -153,23 +242,28 @@ const Skills = () => {
         </div>
 
         <div className="mt-32">
-          <div className="text-center">
-            <h2 className="text-5xl font-bold py-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 mb-4">
+          <div className="text-center" ref={profilesRef}>
+            <h2 className="text-5xl font-bold py-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 mb-2 animate-shimmer">
               Coding Profiles
             </h2>
-            <div className="inline-flex items-center px-4 py-2 bg-blue-100/50 rounded-full text-blue-700 text-sm font-medium mb-4">
-              <Sparkles className="w-4 h-4 mr-2" />
+            <div
+              className="inline-flex items-center px-4 py-2 bg-blue-100/50 rounded-full text-blue-700 text-sm font-medium mb-3 animate-fadeIn"
+              style={{ animationDelay: "0.3s" }}
+            >
+              <Zap className="w-4 h-4 mr-2 animate-pulse" />
               Problem Solving
             </div>
-            <div className="mt-4 flex justify-center">
-              <div className="h-1 w-20 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full"></div>
-            </div>{" "}
-            <div className="mt-4 flex justify-center">
-              <div className="h-1 w-16 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full shine"></div>
+            <div className="flex justify-center">
+              <div className="flex justify-center">
+                <div
+                  className="h-1 w-20 bg-gradient-to-r mb-10 mt-1 from-blue-600 to-blue-400 rounded-full animate-scaleIn"
+                  style={{ animationDelay: "0.9s" }}
+                ></div>
+              </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
             {codingProfiles.map((profile, index) => (
               <a
                 key={index}
@@ -177,17 +271,21 @@ const Skills = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group"
+                ref={(el) => (profileCardRefs.current[index] = el)}
               >
-                <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 relative overflow-hidden">
+                <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 relative overflow-hidden glow">
                   {/* Hover effect overlay */}
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-blue-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                   <div className="absolute top-4 right-4 transform translate-y-2 opacity-50 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                    <ExternalLink className="w-5 h-5 text-blue-600" />
+                    <ExternalLink className="w-5 h-5 text-blue-600 group-hover:animate-pulse" />
                   </div>
 
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2 bg-blue-50 rounded-lg float">
+                    <div
+                      className="p-2 bg-blue-50 rounded-lg group-hover:animate-bounce"
+                      style={{ animationDelay: `${index * 0.1}s` }}
+                    >
                       <img
                         src={profile.icon}
                         alt={profile.name}
@@ -201,7 +299,7 @@ const Skills = () => {
 
                   <div className="space-y-3">
                     {profile.name !== "CodeChef" && (
-                      <div className="flex items-center justify-between bg-blue-50 rounded-lg px-3 py-2">
+                      <div className="flex items-center justify-between bg-blue-50 rounded-lg px-3 py-2 group-hover:bg-blue-100/70 transition-colors duration-300">
                         <span className="text-gray-600">Solved:</span>
                         <span className="font-semibold text-blue-600">
                           {profile.problems}
@@ -210,13 +308,13 @@ const Skills = () => {
                     )}
                     {profile.name === "CodeChef" ? (
                       <>
-                        <div className="flex items-center justify-between bg-blue-50 rounded-lg px-3 py-2">
+                        <div className="flex items-center justify-between bg-blue-50 rounded-lg px-3 py-2 group-hover:bg-blue-100/70 transition-colors duration-300">
                           <span className="text-gray-600">Stars:</span>
                           <span className="font-semibold text-blue-600">
                             {profile.stars}
                           </span>
                         </div>
-                        <div className="flex items-center justify-between bg-blue-50 rounded-lg px-3 py-2">
+                        <div className="flex items-center justify-between bg-blue-50 rounded-lg px-3 py-2 group-hover:bg-blue-100/70 transition-colors duration-300">
                           <span className="text-gray-600">Rating:</span>
                           <span className="font-semibold text-blue-600">
                             {profile.rating}
@@ -224,7 +322,7 @@ const Skills = () => {
                         </div>
                       </>
                     ) : (
-                      <div className="flex items-center justify-between bg-blue-50 rounded-lg px-3 py-2">
+                      <div className="flex items-center justify-between bg-blue-50 rounded-lg px-3 py-2 group-hover:bg-blue-100/70 transition-colors duration-300">
                         <span className="text-gray-600">Rating:</span>
                         <span className="font-semibold text-blue-600">
                           {profile.rating}

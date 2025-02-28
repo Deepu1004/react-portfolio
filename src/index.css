@@ -6,22 +6,32 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Slide animations */
-@keyframes slideInRight {
+/* Animation Keyframes */
+@keyframes fadeIn {
     from {
-        transform: translateX(100%);
         opacity: 0;
     }
 
     to {
-        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
         opacity: 1;
     }
 }
 
 @keyframes slideInLeft {
     from {
-        transform: translateX(-100%);
+        transform: translateX(-50px);
         opacity: 0;
     }
 
@@ -31,15 +41,30 @@ html {
     }
 }
 
-.animate-slideInRight {
-    animation: slideInRight 0.5s ease-out forwards;
+@keyframes slideInRight {
+    from {
+        transform: translateX(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
-.animate-slideInLeft {
-    animation: slideInLeft 0.5s ease-out forwards;
+@keyframes scaleIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
-/* Floating animation */
 @keyframes float {
     0% {
         transform: translateY(0px);
@@ -54,95 +79,241 @@ html {
     }
 }
 
-.float {
-    animation: float 3s ease-in-out infinite;
-}
-
-/* Shine effect */
-@keyframes shine {
-    from {
-        background-position: 200% center;
-    }
-
-    to {
-        background-position: -200% center;
-    }
-}
-
-.shine {
-    background: linear-gradient(90deg,
-            transparent,
-            rgba(255, 255, 255, 0.2),
-            transparent);
-    background-size: 200% 100%;
-    animation: shine 8s linear infinite;
-}
-
-/* Pulse animation */
 @keyframes pulse {
     0% {
-        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+        transform: scale(1);
+        opacity: 1;
     }
 
-    70% {
-        box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
     }
 
     100% {
-        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
-    }
-}
-
-.pulse {
-    animation: pulse 2s infinite;
-}
-
-/* Scale animation */
-@keyframes scaleIn {
-    from {
-        transform: scale(0.9);
-        opacity: 0;
-    }
-
-    to {
         transform: scale(1);
         opacity: 1;
     }
 }
 
-/* Fade animation */
-@keyframes fade {
+@keyframes shimmer {
     0% {
-        opacity: 0;
+        background-position: -200% 0;
     }
 
     100% {
-        opacity: 1;
+        background-position: 200% 0;
     }
 }
 
-.animate-fade {
-    animation: fade 0.5s ease-in-out;
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
-.scale-in {
-    animation: scaleIn 0.5s ease-out forwards;
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-    width: 10px;
+/* Animation Classes */
+.animate-fadeIn {
+    animation: fadeIn 1s ease forwards;
 }
 
-::-webkit-scrollbar-track {
-    background: #f1f5f9;
+.animate-slideInUp {
+    animation: slideInUp 0.8s ease forwards;
 }
 
-::-webkit-scrollbar-thumb {
-    background: #93c5fd;
-    border-radius: 5px;
+.animate-slideInLeft {
+    animation: slideInLeft 0.8s ease forwards;
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: #60a5fa;
+.animate-slideInRight {
+    animation: slideInRight 0.8s ease forwards;
 }
+
+.animate-scaleIn {
+    animation: scaleIn 0.8s ease forwards;
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.animate-shimmer {
+    background: linear-gradient(90deg,
+            rgba(59, 130, 246, 0.1));
+    background-size: 200% 100%;
+    animation: shimmer 4s infinite;
+}
+
+.animate-rotate {
+    animation: rotate 10s linear infinite;
+}
+
+.animate-bounce {
+    animation: bounce 2s ease infinite;
+}
+
+/* Staggered Animation Delays */
+.delay-100 {
+    animation-delay: 100ms;
+}
+
+.delay-200 {
+    animation-delay: 200ms;
+}
+
+.delay-300 {
+    animation-delay: 300ms;
+}
+
+.delay-400 {
+    animation-delay: 400ms;
+}
+
+.delay-500 {
+    animation-delay: 500ms;
+}
+
+.delay-600 {
+    animation-delay: 600ms;
+}
+
+.delay-700 {
+    animation-delay: 700ms;
+}
+
+.delay-800 {
+    animation-delay: 800ms;
+}
+
+.delay-900 {
+    animation-delay: 900ms;
+}
+
+.delay-1000 {
+    animation-delay: 1000ms;
+}
+
+/* Intersection Observer Animation Classes */
+.animate-in {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.animate-hidden {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+}
+
+/* Shine Effect */
+.shine {
+    position: relative;
+    overflow: hidden;
+}
+
+.shine::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(to right,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.3) 50%,
+            rgba(255, 255, 255, 0) 100%);
+    transform: rotate(30deg);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% {
+        transform: translateX(-100%) rotate(30deg);
+    }
+
+    100% {
+        transform: translateX(100%) rotate(30deg);
+    }
+}
+
+/* Hide scrollbar but allow scrolling */
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Floating Particles */
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(to right, #3b82f6, #60a5fa);
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+/* Glowing effect */
+.glow {
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+    transition: box-shadow 0.3s ease;
+}
+
+.glow:hover {
+    box-shadow: 0 0 25px rgba(59, 130, 246, 0.8);
+}
+
+/* Perspective tilt effect */
+.tilt {
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+}
+
+/* Blur effect for depth */
+.blur-bg {
+    backdrop-filter: blur(8px);
+}
+
+/* Add to index.css */
+.animate-hidden {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    will-change: opacity, transform;
+}
+
+.animate-in {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    z-index: 1;
+    /* Ensure elements stay above backgrounds */
+}
+
+/* Add z-index to content containers */
+.content-container {
+    position: relative;
+    z-index: 2;
+}
+
