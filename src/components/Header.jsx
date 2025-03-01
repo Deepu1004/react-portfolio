@@ -46,7 +46,9 @@ const Header = () => {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <a href="#home" className="relative group z-50">
-            <span className="text-3xl font-bold bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 bg-clip-text text-transparent transition-all duration-300 group-hover:from-blue-500 group-hover:via-blue-400 group-hover:to-blue-300">
+            <span
+            style={{cursor: "pointer"}} 
+            className="text-3xl font-bold bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 bg-clip-text text-transparent transition-all duration-300 group-hover:from-blue-500 group-hover:via-blue-400 group-hover:to-blue-300">
               DV
             </span>
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-blue-400 transition-all duration-300 group-hover:w-full"></span>

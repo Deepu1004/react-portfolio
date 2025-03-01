@@ -9,6 +9,10 @@ import {
   Cloud,
   Smartphone,
   Webcam,
+  Zap,
+  ArrowRight,
+  Eye,
+  Star,
 } from "lucide-react";
 
 const Projects = () => {
@@ -17,6 +21,27 @@ const Projects = () => {
   const projectRefs = useRef([]);
   const categoryRefs = useRef([]);
   const headerRef = useRef(null);
+  const [particles, setParticles] = useState([]);
+
+  // Generate random particles
+  useEffect(() => {
+    const generateParticles = () => {
+      const newParticles = [];
+      for (let i = 0; i < 10; i++) {
+        newParticles.push({
+          id: i,
+          size: Math.random() * 6 + 3,
+          left: Math.random() * 100,
+          top: Math.random() * 100,
+          delay: Math.random() * 15,
+          duration: Math.random() * 10 + 10,
+        });
+      }
+      setParticles(newParticles);
+    };
+
+    generateParticles();
+  }, []);
 
   // Group projects by category
   const projectCategories = [
@@ -41,6 +66,39 @@ const Projects = () => {
       tags: ["Flask", "Web Scraping", "BeautifulSoup4"],
       category: "web",
     },
+
+    {
+      title: "HyperOptiDetect-X",
+      description:
+        "HyperOptiDetect-X is an object detection tool using YOLOv10, enabling fast and accurate analysis of images and videos.",
+      image: "projects/project-6.png",
+      github: "https://github.com/Deepu1004/HyperOptiDetect-X",
+      demo: "",
+      tags: ["Python", "Flask", "YOLOv10", "Computer Vision"],
+      category: "cv",
+    },
+    {
+      title: "SketchEase",
+      description:
+        "SketchEase is a sleek online drawing tool with auto-save, dark mode, and grid display for seamless creativity. Powered by TLDraw, it offers an intuitive UI for effortless sketching and management.",
+      // image:
+      //   "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=600",
+      image: "projects/sketch.png",
+      github: "https://github.com/Deepu1004/ExceliDraw",
+      demo: "https://exceli-draw.vercel.app/",
+      tags: ["React js", "Tailwind CSS", "TLDraw"],
+      category: "web",
+    },
+    {
+      title: "GesturaVision",
+      description:
+        "This GesturaVision Interface uses hand gestures to control your computer's mouse, offering intuitive navigation with real-time hand tracking",
+      image: "/projects/project-1.png",
+      github: "https://github.com/Deepu1004/GesturaVision",
+      demo: "",
+      tags: ["Python", "OpenCV", "Computer Vision", "PyAutoGUI"],
+      category: "cv",
+    },
     {
       title: "J.A.R.V.I.S - Personal Assistant",
       description:
@@ -54,30 +112,11 @@ const Projects = () => {
       category: "ai",
     },
     {
-      title: "HyperOptiDetect-X",
-      description:
-        "HyperOptiDetect-X is an object detection tool using YOLOv10, enabling fast and accurate analysis of images and videos.",
-      image: "projects/project-6.png",
-      github: "https://github.com/Deepu1004/HyperOptiDetect-X",
-      demo: "",
-      tags: ["Python", "Flask", "YOLOv10", "Computer Vision"],
-      category: "cv",
-    },
-    {
-      title: "GesturaVision",
-      description:
-        "This GesturaVision Interface uses hand gestures to control your computer's mouse, offering intuitive navigation with real-time hand tracking",
-      image: "projects/project-1.png",
-      github: "https://github.com/Deepu1004/GesturaVision",
-      demo: "",
-      tags: ["Python", "OpenCV", "Computer Vision", "PyAutoGUI"],
-      category: "cv",
-    },
-    {
       title: "HeroesDek",
       description:
         "HeroesDek is a Marvel superhero search engine that allows users to find detailed information about their favorite characters using the Marvel API",
-      image: "projects/project-4.png",
+      image:
+        "projects/project-4.png",
       github: "https://github.com/Deepu1004/Marvel-HeroesDek",
       demo: "https://deepu1004.github.io/Marvel-HeroesDek/",
       tags: ["HTML/CSS", "Javascript", "Marvel API"],
@@ -97,7 +136,8 @@ const Projects = () => {
       title: "Weather Forecast",
       description:
         "Weather-Forecast-App is a responsive app that provides real-time weather updates, showing temperature, humidity, wind speed, and conditions using the OpenWeatherMap API.",
-      image: "projects/project-3.png",
+      image:
+        "projects/project-3.png",
       github: "https://github.com/Deepu1004/Weather-Forecast",
       demo: "https://deepu1004.github.io/Weather-Forecast/",
       tags: ["HTML/CSS", "Javascript", "OpenWeather API"],
@@ -115,7 +155,7 @@ const Projects = () => {
           }
         });
       },
-      { threshold: 0.1 },
+      { threshold: 0.1, rootMargin: "0px 0px -100px 0px" },
     );
 
     // Observe project cards
@@ -171,6 +211,22 @@ const Projects = () => {
       ref={sectionRef}
       className="py-24 bg-gradient-to-b from-white to-blue-50 overflow-hidden relative"
     >
+      {/* Floating particles */}
+      {particles.map((particle) => (
+        <div
+          key={particle.id}
+          className="absolute rounded-full bg-blue-400 opacity-20 particle-animation"
+          style={{
+            width: `${particle.size}px`,
+            height: `${particle.size}px`,
+            left: `${particle.left}%`,
+            top: `${particle.top}%`,
+            animationDelay: `${particle.delay}s`,
+            animationDuration: `${particle.duration}s`,
+          }}
+        />
+      ))}
+
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
@@ -185,7 +241,7 @@ const Projects = () => {
 
       <div className="max-w-7xl mx-auto px-4 relative z-10">
         <div className="text-center mb-16" ref={headerRef}>
-          <h2 className="text-5xl font-bold py-1 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent inline-block mt-4 py-1 mb-2 animate-shimmer">
+          <h2 className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent inline-block mt-4 py-1 mb-2 animate-shimmer">
             My Work
           </h2>
           <br />
@@ -215,13 +271,15 @@ const Projects = () => {
                 activeCategory === category.id
                   ? "bg-blue-600 text-white shadow-lg scale-105"
                   : "bg-white text-blue-600 hover:bg-blue-50"
-              }`}
+              } relative overflow-hidden`}
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              {category.icon}
-              <span>{category.name}</span>
+              <span className="relative z-10 flex items-center gap-2">
+                {category.icon}
+                <span>{category.name}</span>
+              </span>
               {activeCategory === category.id && (
-                <span className="absolute inset-0 rounded-full animate-pulse bg-blue-500/20"></span>
+                <span className="absolute inset-0 bg-blue-500/20 animate-pulse rounded-full"></span>
               )}
             </button>
           ))}
@@ -233,25 +291,25 @@ const Projects = () => {
             <div
               key={index}
               ref={(el) => (projectRefs.current[index] = el)}
-              className="rounded-2xl shadow-lg overflow-hidden bg-white/80 backdrop-blur-sm transition-all duration-500 transform hover:-translate-y-2 hover:shadow-2xl group glow"
+              className="rounded-2xl shadow-lg overflow-hidden bg-white/80 backdrop-blur-sm transition-all duration-500 transform hover:-translate-y-2 hover:shadow-2xl group glow card-3d"
               style={{ animationDelay: `${index * 150}ms` }}
             >
               <div className="relative overflow-hidden h-52">
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent z-10" />
                 <img
                   src={project.image}
                   alt={project.title}
                   className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                 />
                 <div className="absolute bottom-4 left-4 right-4 z-20">
-                  <h3 className="text-xl font-bold text-white mb-2 group-hover:translate-y-0 translate-y-2 transition-transform duration-300 opacity-0 group-hover:opacity-100">
+                  <h3 className="text-xl font-bold text-white mb-2 transform translate-y-0 transition-transform duration-300">
                     {project.title}
                   </h3>
-                  <div className="flex flex-wrap gap-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
+                  <div className="flex flex-wrap gap-2 transform translate-y-0 transition-transform duration-300">
                     {project.tags.slice(0, 3).map((tag, tagIndex) => (
                       <span
                         key={tagIndex}
-                        className="px-2 py-1 bg-white/20 backdrop-blur-sm text-white rounded-full text-xs font-medium"
+                        className="px-2 py-1 bg-blue-500/70 backdrop-blur-sm text-white rounded-full text-xs font-medium"
                         style={{ transitionDelay: `${tagIndex * 50}ms` }}
                       >
                         {tag}
@@ -297,6 +355,7 @@ const Projects = () => {
                   </div>
                   <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-600 to-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 group-hover:animate-pulse" />
                 </div>
+                <div className="mt-4 h-0.5 w-0 bg-gradient-to-r from-blue-600 to-blue-400 transition-all duration-300 group-hover:w-full rounded-full"></div>
               </div>
             </div>
           ))}

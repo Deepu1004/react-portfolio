@@ -70,7 +70,7 @@ const About = () => {
           variants={headerVariants}
           className="text-center mb-20"
         >
-          <h2 className="text-5xl font-bold py-1 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent inline-block mt-4 py-1 mb-2 animate-shimmer">
+          <h2 className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent inline-block mt-4 py-1 mb-2 animate-shimmer">
             About Me
           </h2>
           <div className="mt-4 flex justify-center">

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Code2,
   Database,
@@ -8,6 +8,22 @@ import {
   ExternalLink,
   Sparkles,
   Zap,
+  Award,
+  Cpu,
+  Layers,
+  Code,
+  FileCode,
+  Palette,
+  Server,
+  Braces,
+  Boxes,
+  Workflow,
+  GitBranch,
+  Table,
+  BarChart,
+  Sigma,
+  Camera,
+  Microscope,
 } from "lucide-react";
 
 const Skills = () => {
@@ -16,6 +32,27 @@ const Skills = () => {
   const categoryRefs = useRef([]);
   const profileCardRefs = useRef([]);
   const particlesRef = useRef(null);
+  const [particles, setParticles] = useState([]);
+
+  // Generate random particles
+  useEffect(() => {
+    const generateParticles = () => {
+      const newParticles = [];
+      for (let i = 0; i < 15; i++) {
+        newParticles.push({
+          id: i,
+          size: Math.random() * 8 + 4,
+          left: Math.random() * 100,
+          top: Math.random() * 100,
+          delay: Math.random() * 15,
+          duration: Math.random() * 10 + 10,
+        });
+      }
+      setParticles(newParticles);
+    };
+
+    generateParticles();
+  }, []);
 
   useEffect(() => {
     // Intersection Observer for animations
@@ -27,7 +64,7 @@ const Skills = () => {
           }
         });
       },
-      { threshold: 0.1 },
+      { threshold: 0.1, rootMargin: "0px 0px -100px 0px" },
     );
 
     // Observe skill categories
@@ -61,7 +98,6 @@ const Skills = () => {
       observer.observe(profilesRef.current);
     }
 
-   
     return () => {
       if (categoryRefs.current) {
         categoryRefs.current.forEach((ref) => {
@@ -78,48 +114,59 @@ const Skills = () => {
     };
   }, []);
 
-  
   const skillCategories = [
     {
       title: "Languages",
       icon: <Languages className="w-8 h-8 text-blue-600" />,
       skills: [
-        { name: "Java", image: "/logos/java-logo.png" },
-        { name: "Python", image: "/logos/python-logo.svg" },
-        { name: "HTML", image: "/logos/html-logo.png" },
-        { name: "CSS", image: "/logos/css-logo.png" },
-        { name: "JavaScript", image: "/logos/js-logo.png" },
+        { name: "Java", icon: "/logos/java-logo.png" },
+        { name: "Python", icon: "/logos/python-logo.png" },
+        { name: "HTML", icon: "/logos/html-logo.png" },
+        { name: "CSS", icon: "/logos/css-logo.png" },
+        {
+          name: "JavaScript",
+          icon: "/logos/js-logo.png",
+        },
       ],
     },
     {
       title: "Frameworks & Tools",
-      icon: <Code2 className="w-8 h-8 text-blue-600" />,
+      icon: <Boxes className="w-8 h-8 text-blue-600" />,
       skills: [
-        { name: "ReactJS", image: "/logos/react-logo.png" },
-        { name: "Tailwind CSS", image: "/logos/tailwind-logo.png" },
+        {
+          name: "ReactJS",
+          icon: "/logos/react-logo.png",
+        },
+        {
+          name: "Tailwind CSS",
+          icon: "/logos/tailwind-logo.png",
+        },
       ],
     },
     {
       title: "Version Control",
       icon: <Git className="w-8 h-8 text-blue-600" />,
       skills: [
-        { name: "Git", image: "/logos/git-logo.png" },
-        { name: "GitHub", image: "/logos/github-logo.png" },
+        { name: "Git", icon: "/logos/git-logo.png" },
+        { name: "GitHub", icon: "/logos/github-logo.png" },
       ],
     },
     {
       title: "Databases",
       icon: <Database className="w-8 h-8 text-blue-600" />,
-      skills: [{ name: "MySQL", image: "/logos/mysql-logo.png" }],
+      skills: [{ name: "MySQL", icon: "/logos/mysql-logo.png" }],
     },
     {
       title: "Libraries",
       icon: <Library className="w-8 h-8 text-blue-600" />,
       skills: [
-        { name: "Pandas", image: "/logos/pandas-logo.png" },
-        { name: "Numpy", image: "/logos/numpy-logo.png" },
-        { name: "PyTorch", image: "/logos/pytorch-logo.png" },
-        { name: "OpenCV", image: "/logos/opencv-logo.png" },
+        {
+          name: "Pandas",
+          icon: "/logos/pandas-logo.png",
+        },
+        { name: "Numpy", icon: "/logos/numpy-logo.png" },
+        { name: "PyTorch", icon: "/logos/pytorch-logo.png" },
+        { name: "OpenCV", icon: "/logos/opencv-logo.png" },
       ],
     },
   ];
@@ -131,6 +178,7 @@ const Skills = () => {
       problems: "250+ Problems",
       rating: "1700+",
       icon: "/logos/leetcode-logo.png",
+      color: "from-blue-600 to-blue-400",
     },
     {
       name: "CodeChef",
@@ -139,6 +187,7 @@ const Skills = () => {
       rating: "1700+",
       stars: "3★",
       icon: "/logos/codechef-logo.png",
+      color: "from-blue-500 to-blue-300",
     },
     {
       name: "CodingNinjas",
@@ -146,6 +195,7 @@ const Skills = () => {
       problems: "150+ Problems",
       rating: "Ninja",
       icon: "/logos/coding-ninjas-logo.png",
+      color: "from-blue-700 to-blue-500",
     },
     {
       name: "HackerRank",
@@ -153,15 +203,32 @@ const Skills = () => {
       problems: "180+ Problems",
       rating: "5★",
       icon: "/logos/hacker-rank-logo.webp",
+      color: "from-blue-600 to-blue-400",
     },
   ];
 
   return (
     <section
       id="skills"
-      className="py-24 bg-gradient-to-b from-white to-blue-0 relative overflow-hidden"
+      className="py-24 bg-gradient-to-b from-white to-blue-50 relative overflow-hidden"
       ref={particlesRef}
     >
+      {/* Floating particles */}
+      {particles.map((particle) => (
+        <div
+          key={particle.id}
+          className="absolute rounded-full bg-blue-400 opacity-20 particle-animation"
+          style={{
+            width: `${particle.size}px`,
+            height: `${particle.size}px`,
+            left: `${particle.left}%`,
+            top: `${particle.top}%`,
+            animationDelay: `${particle.delay}s`,
+            animationDuration: `${particle.duration}s`,
+          }}
+        />
+      ))}
+
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-200 rounded-full opacity-20 blur-3xl animate-pulse" />
@@ -200,13 +267,13 @@ const Skills = () => {
             <div
               key={index}
               ref={(el) => (categoryRefs.current[index] = el)}
-              className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 overflow-hidden group hover:-translate-y-2 glow"
+              className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 overflow-hidden group hover:-translate-y-2 glow card-3d skill-card"
               style={{ animationDelay: `${index * 150}ms` }}
             >
               <div className="p-6">
                 <div className="flex items-center gap-3 mb-6">
                   <div
-                    className="p-2 bg-blue-50 rounded-lg animate-float group-hover:scale-110 transition-transform duration-300"
+                    className="p-3 bg-blue-50 rounded-lg animate-float group-hover:scale-110 transition-transform duration-300 skill-icon"
                     style={{ animationDelay: `${index * 0.2}s` }}
                   >
                     {category.icon}
@@ -215,28 +282,37 @@ const Skills = () => {
                     {category.title}
                   </h3>
                 </div>
-                <div className="grid grid-cols-2 gap-3">
-                  {category.skills.map((skill, skillIndex) => (
-                    <div
-                      key={skillIndex}
-                      className="bg-gradient-to-r from-blue-50 to-blue-100/50 rounded-lg p-3 flex items-center justify-center gap-2 group-hover:from-blue-100 group-hover:to-blue-200/50 transition-all duration-300 hover:scale-105"
-                      style={{
-                        animationDelay: `${(index * 5 + skillIndex) * 100}ms`,
-                      }}
-                    >
-                      <img
-                        src={skill.image}
-                        alt={skill.name}
-                        className="w-5 h-5 object-contain group-hover:animate-bounce"
-                        style={{ animationDelay: `${skillIndex * 0.1}s` }}
-                      />
-                      <span className="text-gray-700 font-medium">
-                        {skill.name}
-                      </span>
-                    </div>
-                  ))}
+                <div className="relative">
+                  <div className="grid grid-cols-2 gap-3">
+                    {category.skills.map((skill, skillIndex) => (
+                      <div
+                        key={skillIndex}
+                        className="bg-gradient-to-r from-blue-50 to-blue-100/50 rounded-lg p-3 flex items-center gap-2 group-hover:from-blue-100 group-hover:to-blue-200/50 transition-all duration-300 hover:scale-105"
+                        style={{
+                          animationDelay: `${(index * 5 + skillIndex) * 100}ms`,
+                        }}
+                      >
+                        <div
+                          className="flex-shrink-0 hover:animate-bounce scale-110"
+                          style={{ animationDelay: `${skillIndex * 0.1}s` }}
+                        >
+                          <img
+                            src={skill.icon}
+                            alt={skill.name}
+                            className="w-5 h-5 object-contain"
+                            style={{ animationDelay: `${skillIndex * 0.1}s` }}
+                          />
+                        </div>
+                        <span className="text-gray-700 font-medium">
+                          {skill.name}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
+              {/* Blue line positioned at the bottom */}
+              <div className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-blue-600 to-blue-400 transition-all duration-500 group-hover:w-full"></div>
             </div>
           ))}
         </div>
@@ -254,12 +330,10 @@ const Skills = () => {
               Problem Solving
             </div>
             <div className="flex justify-center">
-              <div className="flex justify-center">
-                <div
-                  className="h-1 w-20 bg-gradient-to-r mb-10 mt-1 from-blue-600 to-blue-400 rounded-full animate-scaleIn"
-                  style={{ animationDelay: "0.9s" }}
-                ></div>
-              </div>
+              <div
+                className="h-1 w-20 bg-gradient-to-r mb-10 mt-1 from-gray-600 to-gray-400 rounded-full animate-scaleIn"
+                style={{ animationDelay: "0.9s" }}
+              ></div>
             </div>
           </div>
 
@@ -273,23 +347,23 @@ const Skills = () => {
                 className="group"
                 ref={(el) => (profileCardRefs.current[index] = el)}
               >
-                <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 relative overflow-hidden glow">
+                <div className="bg-white p-6 rounded-xl shadow-lg transition-all duration-500 transform hover:-translate-y-2 relative overflow-hidden">
                   {/* Hover effect overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-blue-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-gray-200/5 to-gray-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                   <div className="absolute top-4 right-4 transform translate-y-2 opacity-50 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                    <ExternalLink className="w-5 h-5 text-blue-600 group-hover:animate-pulse" />
+                    <ExternalLink className="w-5 h-5 text-blue-600" />
                   </div>
 
                   <div className="flex items-center gap-3 mb-4">
                     <div
-                      className="p-2 bg-blue-50 rounded-lg group-hover:animate-bounce"
+                      className="p-2 bg-blue-50 rounded-lg"
                       style={{ animationDelay: `${index * 0.1}s` }}
                     >
                       <img
                         src={profile.icon}
-                        alt={profile.name}
-                        className="w-8 h-8 object-contain"
+                        alt={`${profile.name} logo`}
+                        className="w-8 h-8"
                       />
                     </div>
                     <h4 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
@@ -299,7 +373,7 @@ const Skills = () => {
 
                   <div className="space-y-3">
                     {profile.name !== "CodeChef" && (
-                      <div className="flex items-center justify-between bg-blue-50 rounded-lg px-3 py-2 group-hover:bg-blue-100/70 transition-colors duration-300">
+                      <div className="flex items-center justify-between bg-blue-50 rounded-lg px-3 py-2 transition-colors duration-300">
                         <span className="text-gray-600">Solved:</span>
                         <span className="font-semibold text-blue-600">
                           {profile.problems}
@@ -308,13 +382,13 @@ const Skills = () => {
                     )}
                     {profile.name === "CodeChef" ? (
                       <>
-                        <div className="flex items-center justify-between bg-blue-50 rounded-lg px-3 py-2 group-hover:bg-blue-100/70 transition-colors duration-300">
+                        <div className="flex items-center justify-between bg-blue-50 rounded-lg px-3 py-2 transition-colors duration-300">
                           <span className="text-gray-600">Stars:</span>
                           <span className="font-semibold text-blue-600">
                             {profile.stars}
                           </span>
                         </div>
-                        <div className="flex items-center justify-between bg-blue-50 rounded-lg px-3 py-2 group-hover:bg-blue-100/70 transition-colors duration-300">
+                        <div className="flex items-center justify-between bg-blue-50 rounded-lg px-3 py-2 transition-colors duration-300">
                           <span className="text-gray-600">Rating:</span>
                           <span className="font-semibold text-blue-600">
                             {profile.rating}
@@ -322,7 +396,7 @@ const Skills = () => {
                         </div>
                       </>
                     ) : (
-                      <div className="flex items-center justify-between bg-blue-50 rounded-lg px-3 py-2 group-hover:bg-blue-100/70 transition-colors duration-300">
+                      <div className="flex items-center justify-between bg-blue-50 rounded-lg px-3 py-2 transition-colors duration-300">
                         <span className="text-gray-600">Rating:</span>
                         <span className="font-semibold text-blue-600">
                           {profile.rating}
@@ -331,7 +405,8 @@ const Skills = () => {
                     )}
                   </div>
 
-                  <div className="mt-4 h-0.5 w-0 bg-gradient-to-r from-blue-600 to-blue-400 transition-all duration-300 group-hover:w-full rounded-full"></div>
+                  {/* Blue line positioned at the bottom */}
+                  <div className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-blue-600 to-blue-400 transition-all duration-500 group-hover:w-full"></div>
                 </div>
               </a>
             ))}
