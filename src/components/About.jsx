@@ -3,12 +3,13 @@ import { Brain, GraduationCap, Code2, Trophy, Book } from "lucide-react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useTheme } from "../context/ThemeContext";
+import HobbiesSection from "./HobbiesSection";
+import TechStackSection from "./TechStackSection";
 
 const About = () => {
   const { isDarkMode } = useTheme();
   const [particles, setParticles] = useState([]);
 
-  // Generate random particles with slight movement
   useEffect(() => {
     const generateParticles = () => {
       const newParticles = [];
@@ -28,7 +29,6 @@ const About = () => {
     generateParticles();
   }, []);
 
-  // Animation variants for initial appearance
   const headerVariants = {
     hidden: { opacity: 0, y: -50 },
     visible: {
@@ -53,7 +53,7 @@ const About = () => {
       opacity: 1,
       x: 0,
       transition: { duration: 0.7, ease: "easeOut" },
-      staggerChildren: { amount: 0.2 }, // Stagger the skill card animations
+      staggerChildren: { amount: 0.2 },
     },
   };
 
@@ -87,7 +87,6 @@ const About = () => {
     },
   };
 
-  // Hook to detect when sections are in view
   const [headerRef, headerInView] = useInView({
     triggerOnce: true,
     threshold: 0.3,
@@ -97,6 +96,14 @@ const About = () => {
     threshold: 0.3,
   });
   const [rightRef, rightInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.3,
+  });
+  const [hobbiesRef, hobbiesInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.3,
+  });
+  const [skillsRef, skillsInView] = useInView({
     triggerOnce: true,
     threshold: 0.3,
   });
@@ -110,7 +117,6 @@ const About = () => {
           : "bg-gradient-to-b from-white to-blue-100"
       }`}
     >
-      {/* Floating particles with slight movement */}
       {particles.map((particle) => (
         <motion.div
           key={particle.id}
@@ -130,7 +136,6 @@ const About = () => {
       ))}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header Section with More Dynamic Animation */}
         <motion.div
           ref={headerRef}
           initial="hidden"
@@ -159,7 +164,6 @@ const About = () => {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-16 items-start">
-          {/* Left Section - About Me with Slide-In Animation */}
           <motion.div
             ref={leftRef}
             initial="hidden"
@@ -211,7 +215,6 @@ const About = () => {
                 </p>
               </div>
 
-              {/* Education Section */}
               <div className="mt-12">
                 <h3
                   className={`text-2xl font-bold ${
@@ -259,111 +262,135 @@ const About = () => {
             </div>
           </motion.div>
 
-          {/* Right Section - Skills with Slide-In and Staggered Animation */}
           <motion.div
             ref={rightRef}
             initial="hidden"
             animate={rightInView ? "visible" : "hidden"}
             variants={rightSectionVariants}
-            className="grid grid-cols-2 gap-6"
+            className="space-y-6"
           >
-            <motion.div
-              variants={skillCardVariants}
-              className="group col-span-2"
-            >
-              <div
-                className={`p-8 ${
-                  isDarkMode
-                    ? "bg-gradient-to-br from-gray-800 to-gray-900"
-                    : "bg-gradient-to-br from-blue-50 to-white"
-                } rounded-xl shadow-lg transition-all duration-500 hover:shadow-2xl hover:-translate-y-1 transform hover:scale-105`}
+            <div className="grid grid-cols-2 gap-6">
+              <motion.div
+                variants={skillCardVariants}
+                className="group col-span-2"
               >
-                <Code2
-                  className={`${
-                    isDarkMode ? "text-blue-400" : "text-blue-600"
-                  } mb-4 group-hover:animate-spin`}
-                  size={36}
-                />
-                <h3
-                  className={`text-2xl font-bold mb-3 ${
-                    isDarkMode ? "text-gray-100" : "text-gray-800"
-                  }`}
+                <div
+                  className={`p-8 ${
+                    isDarkMode
+                      ? "bg-gradient-to-br from-gray-800 to-gray-900"
+                      : "bg-gradient-to-br from-blue-50 to-white"
+                  } rounded-xl shadow-lg transition-all duration-500 hover:shadow-2xl hover:-translate-y-1 transform hover:scale-105`}
                 >
-                  Clean Code Advocate
-                </h3>
-                <p
-                  className={`${
-                    isDarkMode ? "text-gray-400" : "text-gray-600"
-                  } leading-relaxed`}
-                >
-                  Writing clean, efficient, and maintainable code is at the core
-                  of my development philosophy.
-                </p>
-              </div>
-            </motion.div>
+                  <Code2
+                    className={`${
+                      isDarkMode ? "text-blue-400" : "text-blue-600"
+                    } mb-4 group-hover:animate-spin`}
+                    size={36}
+                  />
+                  <h3
+                    className={`text-2xl font-bold mb-3 ${
+                      isDarkMode ? "text-gray-100" : "text-gray-800"
+                    }`}
+                  >
+                    Clean Code Advocate
+                  </h3>
+                  <p
+                    className={`${
+                      isDarkMode ? "text-gray-400" : "text-gray-600"
+                    } leading-relaxed`}
+                  >
+                    Writing clean, efficient, and maintainable code is at the
+                    core of my development philosophy.
+                  </p>
+                </div>
+              </motion.div>
 
-            <motion.div variants={skillCardVariants} className="group">
-              <div
-                className={`h-full p-8 ${
-                  isDarkMode
-                    ? "bg-gradient-to-br from-gray-800 to-gray-900"
-                    : "bg-gradient-to-br from-blue-50 to-white"
-                } rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 transform hover:scale-105`}
-              >
-                <Trophy
-                  className={`${
-                    isDarkMode ? "text-blue-400" : "text-blue-600"
-                  } mb-4 group-hover:animate-bounce`}
-                  size={36}
-                />
-                <h3
-                  className={`text-xl font-bold mb-3 ${
-                    isDarkMode ? "text-gray-100" : "text-gray-800"
-                  }`}
+              <motion.div variants={skillCardVariants} className="group">
+                <div
+                  className={`h-full p-8 ${
+                    isDarkMode
+                      ? "bg-gradient-to-br from-gray-800 to-gray-900"
+                      : "bg-gradient-to-br from-blue-50 to-white"
+                  } rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 transform hover:scale-105`}
                 >
-                  Problem Solver
-                </h3>
-                <p
-                  className={`${
-                    isDarkMode ? "text-gray-400" : "text-gray-600"
-                  } leading-relaxed`}
-                >
-                  I thrive on tackling complex challenges and finding creative
-                  solutions.
-                </p>
-              </div>
-            </motion.div>
+                  <Trophy
+                    className={`${
+                      isDarkMode ? "text-blue-400" : "text-blue-600"
+                    } mb-4 group-hover:animate-bounce`}
+                    size={36}
+                  />
+                  <h3
+                    className={`text-xl font-bold mb-3 ${
+                      isDarkMode ? "text-gray-100" : "text-gray-800"
+                    }`}
+                  >
+                    Problem Solver
+                  </h3>
+                  <p
+                    className={`${
+                      isDarkMode ? "text-gray-400" : "text-gray-600"
+                    } leading-relaxed`}
+                  >
+                    I thrive on tackling complex challenges and finding creative
+                    solutions.
+                  </p>
+                </div>
+              </motion.div>
 
-            <motion.div variants={skillCardVariants} className="group">
-              <div
-                className={`h-full p-8 ${
-                  isDarkMode
-                    ? "bg-gradient-to-br from-gray-800 to-gray-900"
-                    : "bg-gradient-to-br from-blue-50 to-white"
-                } rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 transform hover:scale-105`}
-              >
-                <Book
-                  className={`${
-                    isDarkMode ? "text-blue-400" : "text-blue-600"
-                  } mb-4 group-hover:animate-pulse`}
-                  size={36}
-                />
-                <h3
-                  className={`text-xl font-bold mb-3 ${
-                    isDarkMode ? "text-gray-100" : "text-gray-800"
-                  }`}
+              <motion.div variants={skillCardVariants} className="group">
+                <div
+                  className={`h-full p-8 ${
+                    isDarkMode
+                      ? "bg-gradient-to-br from-gray-800 to-gray-900"
+                      : "bg-gradient-to-br from-blue-50 to-white"
+                  } rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 transform hover:scale-105`}
                 >
-                  Continuous Learner
-                </h3>
-                <p
-                  className={`${
-                    isDarkMode ? "text-gray-400" : "text-gray-600"
-                  } leading-relaxed`}
-                >
-                  Always exploring new technologies and expanding my skill set.
-                </p>
-              </div>
-            </motion.div>
+                  <Book
+                    className={`${
+                      isDarkMode ? "text-blue-400" : "text-blue-600"
+                    } mb-4 group-hover:animate-pulse`}
+                    size={36}
+                  />
+                  <h3
+                    className={`text-xl font-bold mb-3 ${
+                      isDarkMode ? "text-gray-100" : "text-gray-800"
+                    }`}
+                  >
+                    Continuous Learner
+                  </h3>
+                  <p
+                    className={`${
+                      isDarkMode ? "text-gray-400" : "text-gray-600"
+                    } leading-relaxed`}
+                  >
+                    Always exploring new technologies and expanding my skill
+                    set.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            ref={hobbiesRef}
+            initial={{ opacity: 0, y: 20 }}
+            animate={
+              hobbiesInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+            }
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
+            <HobbiesSection />
+          </motion.div>
+
+          <motion.div
+            ref={skillsRef}
+            initial={{ opacity: 0, y: 20 }}
+            animate={
+              skillsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+            }
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
+            <TechStackSection />
           </motion.div>
         </div>
       </div>

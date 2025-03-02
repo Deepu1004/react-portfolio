@@ -51,7 +51,7 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         {/* Logo */}
         <a href="#home" className="relative group z-50 flex-shrink-0">
-          <span
+          {/* <span
             style={{ cursor: "pointer" }}
             className={`text-3xl font-bold bg-gradient-to-r ${
               isDarkMode
@@ -60,7 +60,8 @@ const Header = () => {
             } bg-clip-text text-transparent transition-all duration-300 group-hover:from-blue-500 group-hover:via-blue-400 group-hover:to-blue-300`}
           >
             DV
-          </span>
+          </span> */}
+          <img src={"/images/memoji-smile.png"} alt="DV" className="w-10 h-10" />
           <span
             className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r ${
               isDarkMode

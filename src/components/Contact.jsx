@@ -202,7 +202,7 @@ const Contact = () => {
                   </span>
                 </a>
 
-                <div className="flex gap-4">
+                <div className="flex flex-col gap-4 md:flex-row">
                   <a
                     href="https://github.com/Deepu1004"
                     target="_blank"
@@ -314,7 +314,7 @@ const Contact = () => {
 
             <button
               type="submit"
-              className={`w- full inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r ${
+              className={`w-full inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r ${
                 isDarkMode
                   ? "from-blue-500 to-blue-400 hover:from-blue-600 hover:to-blue-500 shadow-blue-500/10"
                   : "from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 shadow-blue-500/25"

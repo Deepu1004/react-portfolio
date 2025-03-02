@@ -379,6 +379,7 @@ const Skills = () => {
             </div>
           ))}
         </div>
+        
 
         <div className="mt-32">
           <div className="text-center" ref={profilesRef}>
