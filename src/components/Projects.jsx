@@ -86,13 +86,13 @@ const Projects = () => {
       image: "projects/sketch.png",
       github: "https://github.com/Deepu1004/ExceliDraw",
       demo: "https://exceli-draw.vercel.app/",
-      tags: ["React js", "Tailwind CSS", "TLDraw"],
+      tags: ["React JS", "Tailwind CSS", "TLDraw"],
       category: "web",
     },
     {
       title: "GesturaVision",
       description:
-        "This GesturaVision Interface uses hand gestures to control your computer's mouse, offering intuitive navigation with real-time hand tracking",
+        "This GesturaVision Interface uses hand gestures to control your computer's mouse, offering intuitive navigation with real-time hand tracking.",
       image: "/projects/project-1.png",
       github: "https://github.com/Deepu1004/GesturaVision",
       demo: "",
@@ -112,13 +112,13 @@ const Projects = () => {
       category: "ai",
     },
     {
-      title: "HeroesDek",
+      title: "HeroesDeck",
       description:
-        "HeroesDek is a Marvel superhero search engine that allows users to find detailed information about their favorite characters using the Marvel API",
+        "HeroesDeck is a Marvel superhero search engine that allows users to find detailed information about their favorite characters using the Marvel API.",
       image: "projects/project-4.png",
-      github: "https://github.com/Deepu1004/Marvel-HeroesDek",
-      demo: "https://deepu1004.github.io/Marvel-HeroesDek/",
-      tags: ["HTML/CSS", "Javascript", "Marvel API"],
+      github: "https://github.com/Deepu1004/Marvel-HeroesDeck",
+      demo: "https://deepu1004.github.io/Marvel-HeroesDeck/",
+      tags: ["HTML/CSS", "JavaScript", "Marvel API"],
       category: "web",
     },
     {
@@ -128,7 +128,7 @@ const Projects = () => {
       image: "projects/project-7.png",
       github: "https://github.com/Deepu1004/Tic-Tac-Toe",
       demo: "https://deepu1004.github.io/Tic-Tac-Toe/",
-      tags: ["HTML/CSS", "Javascript"],
+      tags: ["HTML/CSS", "JavaScript"],
       category: "web",
     },
     {
@@ -138,7 +138,7 @@ const Projects = () => {
       image: "projects/project-3.png",
       github: "https://github.com/Deepu1004/Weather-Forecast",
       demo: "https://deepu1004.github.io/Weather-Forecast/",
-      tags: ["HTML/CSS", "Javascript", "OpenWeather API"],
+      tags: ["HTML/CSS", "JavaScript", "OpenWeather API"],
       category: "web",
     },
   ];
@@ -395,7 +395,7 @@ const Projects = () => {
                                 ? "text-blue-400 hover:text-blue-300"
                                 : "text-blue-600 hover:text-blue-800"
                             } transition-colors duration-300 flex items-center gap-2 text-sm font-medium group-hover:animate-bounce`}
-                            style={{ animationDelay: "0.1s" }}
+                            style={{ animationDelay: "0.2s" }}
                           >
                             <Github size={18} />
                             <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">

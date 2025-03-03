@@ -262,7 +262,7 @@ const Contact = () => {
                 className={`w-full px-4 py-3 rounded-xl ${
                   isDarkMode
                     ? "bg-gray-700 border-gray-600 text-gray-100 focus:ring-blue-400 focus:border-blue-400"
-                    : "border-gray-200 focus:ring-blue-500 focus:border-blue-500"
+                    : "bg-gray-100 border-gray-600 focus:ring-blue-500 focus:border-blue-500"
                 } transition-all duration-300 hover:shadow-md`}
                 required
               />
@@ -284,7 +284,7 @@ const Contact = () => {
                 className={`w-full px-4 py-3 rounded-xl ${
                   isDarkMode
                     ? "bg-gray-700 border-gray-600 text-gray-100 focus:ring-blue-400 focus:border-blue-400"
-                    : "border-gray-200 focus:ring-blue-500 focus:border-blue-500"
+                    : "bg-gray-100 border-gray-200 focus:ring-blue-500 focus:border-blue-500"
                 } transition-all duration-300 hover:shadow-md`}
                 required
               />
@@ -306,7 +306,7 @@ const Contact = () => {
                 className={`w-full px-4 py-3 rounded-xl ${
                   isDarkMode
                     ? "bg-gray-700 border-gray-600 text-gray-100 focus:ring-blue-400 focus:border-blue-400"
-                    : "border-gray-200 focus:ring-blue-500 focus:border-blue-500"
+                    : "bg-gray-100 border-gray-200 focus:ring-blue-500 focus:border-blue-500"
                 } transition-all duration-300 hover:shadow-md`}
                 required
               />
