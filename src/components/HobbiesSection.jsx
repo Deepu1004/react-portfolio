@@ -11,7 +11,15 @@ import {
   Sparkles,
 } from "lucide-react";
 
-// Function to generate random positions within container bounds
+const funnyMessages = [
+  "Hey! My hobbies are part of who I am! 🎮",
+  "Nice try, but these hobbies aren't going anywhere! 📸",
+  "You can't escape your interests that easily! 🎵",
+  "These hobbies are stuck with me like glue! 🏔️",
+  "Sorry, my hobbies are here to stay! 📚",
+  "Nope! Can't get rid of what makes me, me! 🍳",
+];
+
 const generateRandomPosition = (
   containerWidth,
   containerHeight,
@@ -26,14 +34,12 @@ const generateRandomPosition = (
   };
 };
 
-// Function to generate random rotation
 const generateRandomRotation = () => {
-  return Math.random() * 10 - 5; // Between -5 and 5 degrees
+  return Math.random() * 10 - 5;
 };
 
-// Function to generate random scale
 const generateRandomScale = () => {
-  return 0.9 + Math.random() * 0.2; // Between 0.9 and 1.1
+  return 0.9 + Math.random() * 0.2;
 };
 
 const createInitialHobbies = (containerWidth, containerHeight) => {
@@ -54,71 +60,130 @@ const createInitialHobbies = (containerWidth, containerHeight) => {
   }));
 };
 
-const HobbyItem = ({ hobby, updatePosition, isDarkMode }) => {
+const HobbyItem = ({ hobby, updatePosition, isDarkMode, containerSize }) => {
   const controls = useDragControls();
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+  const elementRef = useRef(null);
+
+  const checkBoundaries = (info) => {
+    if (!elementRef.current) return false;
+
+    const element = elementRef.current;
+    const elementRect = element.getBoundingClientRect();
+    const newX = hobby.position.x + info.offset.x;
+    const newY = hobby.position.y + info.offset.y;
+
+    // Check if the new position would be within boundaries
+    const isWithinBounds =
+      newX >= 0 &&
+      newY >= 0 &&
+      newX <= containerSize.width - elementRect.width &&
+      newY <= containerSize.height - elementRect.height;
+
+    return isWithinBounds;
+  };
+
+  const handleDragEnd = (_, info) => {
+    if (checkBoundaries(info)) {
+      const newPosition = {
+        x: hobby.position.x + info.offset.x,
+        y: hobby.position.y + info.offset.y,
+      };
+      updatePosition(hobby.id, newPosition);
+    } else {
+      // Show random funny alert
+      const randomMessage =
+        funnyMessages[Math.floor(Math.random() * funnyMessages.length)];
+      setAlertMessage(randomMessage);
+      setShowAlert(true);
+      setTimeout(() => setShowAlert(false), 3000);
+
+      // Generate new random position within container
+      const newPosition = generateRandomPosition(
+        containerSize.width,
+        containerSize.height,
+      );
+      updatePosition(hobby.id, newPosition);
+    }
+  };
 
   return (
-    <motion.div
-      key={hobby.id}
-      className={`absolute cursor-move px-5 py-3 rounded-lg ${
-        isDarkMode
-          ? "bg-gradient-to-r from-blue-500/30 to-blue-500/30 hover:from-blue-500/40 hover:to-blue-500/40"
-          : "bg-gradient-to-r from-blue-100 to-indigo-100 hover:from-blue-200 hover:to-indigo-200"
-      } flex items-center gap-3 transition-colors duration-200 backdrop-blur-sm shadow-md border ${
-        isDarkMode ? "border-blue-500/20" : "border-blue-200"
-      }`}
-      drag
-      dragControls={controls}
-      dragMomentum={false}
-      dragElastic={0.1}
-      initial={{
-        x: hobby.position.x,
-        y: hobby.position.y,
-        rotate: hobby.rotation,
-        scale: hobby.scale,
-      }}
-      animate={{
-        x: hobby.position.x,
-        y: hobby.position.y,
-        rotate: hobby.rotation,
-        scale: hobby.scale,
-      }}
-      onDragEnd={(_, info) => {
-        const newPosition = {
-          x: hobby.position.x + info.offset.x,
-          y: hobby.position.y + info.offset.y,
-        };
-        updatePosition(hobby.id, newPosition);
-      }}
-      whileHover={{
-        scale: hobby.scale * 1.1,
-        zIndex: 10,
-        boxShadow: isDarkMode
-          ? "0 0 15px 2px rgba(59, 130, 246, 0.3)"
-          : "0 0 15px 2px rgba(59, 130, 246, 0.2)",
-      }}
-      whileTap={{ scale: hobby.scale * 0.95, zIndex: 10 }}
-      onPointerDown={(e) => {
-        controls.start(e);
-      }}
-    >
-      <span
-        className={`p-1.5 rounded-full ${
+    <>
+      <motion.div
+        ref={elementRef}
+        key={hobby.id}
+        className={`absolute cursor-move px-5 py-3 rounded-lg ${
           isDarkMode
-            ? "bg-blue-500/30 text-blue-200"
-            : "bg-blue-200 text-blue-700"
+            ? "bg-gradient-to-r from-blue-500/30 to-blue-500/30 hover:from-blue-500/40 hover:to-blue-500/40"
+            : "bg-gradient-to-r from-blue-100 to-indigo-100 hover:from-blue-200 hover:to-indigo-200"
+        } flex items-center gap-3 transition-colors duration-200 backdrop-blur-sm shadow-md border ${
+          isDarkMode ? "border-blue-500/20" : "border-blue-200"
         }`}
+        drag
+        dragControls={controls}
+        dragMomentum={false}
+        dragElastic={0.1}
+        initial={{
+          x: hobby.position.x,
+          y: hobby.position.y,
+          rotate: hobby.rotation,
+          scale: hobby.scale,
+        }}
+        animate={{
+          x: hobby.position.x,
+          y: hobby.position.y,
+          rotate: hobby.rotation,
+          scale: hobby.scale,
+        }}
+        onDragEnd={handleDragEnd}
+        whileHover={{
+          scale: hobby.scale * 1.1,
+          zIndex: 10,
+          boxShadow: isDarkMode
+            ? "0 0 15px 2px rgba(59, 130, 246, 0.3)"
+            : "0 0 15px 2px rgba(59, 130, 246, 0.2)",
+        }}
+        whileTap={{ scale: hobby.scale * 0.95, zIndex: 10 }}
+        onPointerDown={(e) => {
+          controls.start(e);
+        }}
       >
-        {hobby.icon}
-      </span>
-      <span
-        className={`text-sm font-medium ${
-          isDarkMode ? "text-gray-200" : "text-gray-700"
-        }`}
-      >
-        {hobby.name}
-      </span>
-    </motion.div>
+        <span
+          className={`p-1.5 rounded-full ${
+            isDarkMode
+              ? "bg-blue-500/30 text-blue-200"
+              : "bg-blue-200 text-blue-700"
+          }`}
+        >
+          {hobby.icon}
+        </span>
+        <span
+          className={`text-sm font-medium ${
+            isDarkMode ? "text-gray-200" : "text-gray-700"
+          }`}
+        >
+          {hobby.name}
+        </span>
+      </motion.div>
+
+      {showAlert && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0 }}
+          className={`fixed bottom-4 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-xl ${
+            isDarkMode
+              ? "bg-indigo-900/90 text-indigo-100"
+              : "bg-indigo-100 text-indigo-800"
+          } shadow-lg z-50 text-sm font-medium flex items-center gap-2`}
+        >
+          <span className="text-xl">✨</span>
+          {alertMessage}
+          <span className="text-xl">✨</span>
+        </motion.div>
+      )}
+    </>
   );
 };
 
@@ -131,12 +196,10 @@ const HobbiesSection = () => {
   const [hobbies, setHobbies] = useState([]);
   const containerRef = useRef(null);
 
-  // Initialize hobbies with random positions on mount
   useEffect(() => {
     setHobbies(createInitialHobbies(containerSize.width, containerSize.height));
   }, [containerSize]);
 
-  // Update container size on window resize
   useEffect(() => {
     const handleResize = () => {
       if (containerRef.current) {
@@ -147,7 +210,7 @@ const HobbiesSection = () => {
       }
     };
 
-    handleResize(); // Initial call
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -160,7 +223,6 @@ const HobbiesSection = () => {
     );
   };
 
-  // Randomize all positions
   const randomizePositions = () => {
     setHobbies((prevHobbies) =>
       prevHobbies.map((hobby) => ({
@@ -186,7 +248,6 @@ const HobbiesSection = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden opacity-10">
         {Array.from({ length: 20 }).map((_, i) => (
           <div
@@ -228,11 +289,12 @@ const HobbiesSection = () => {
           </motion.button>
         </div>
 
-        <p className={`mt-2 ${isDarkMode ? "text-gray-300" : "text-gray-600"}`}>
+        <p
+          className={`mb-4 mt-2 ${
+            isDarkMode ? "text-gray-300" : "text-gray-600"
+          }`}
+        >
           Explore my interests and hobbies beyond the digital realm.
-          <span className="block mt-1 text-sm italic">
-            (Drag items to position them anywhere)
-          </span>
         </p>
       </div>
 
@@ -248,6 +310,7 @@ const HobbiesSection = () => {
             hobby={hobby}
             updatePosition={updatePosition}
             isDarkMode={isDarkMode}
+            containerSize={containerSize}
           />
         ))}
       </div>

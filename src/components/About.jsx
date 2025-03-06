@@ -378,9 +378,7 @@ const About = () => {
               hobbiesInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
             }
             transition={{ duration: 0.6, ease: "easeOut" }}
-          >
-            <HobbiesSection />
-          </motion.div>
+          ></motion.div>
 
           <motion.div
             ref={skillsRef}
@@ -389,9 +387,9 @@ const About = () => {
               skillsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
             }
             transition={{ duration: 0.6, ease: "easeOut" }}
-          >
-            <TechStackSection />
-          </motion.div>
+          ></motion.div>
+          <HobbiesSection />
+          <TechStackSection />
         </div>
       </div>
     </section>

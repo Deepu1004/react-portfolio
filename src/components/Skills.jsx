@@ -127,8 +127,14 @@ const Skills = () => {
         />
       ),
       skills: [
-        { name: "Java", icon: "/logos/java-logo.png" },
-        { name: "Python", icon: "/logos/python-logo.png" },
+        {
+          name: "Java",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+        },
+        {
+          name: "Python",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+        },
         { name: "HTML", icon: "/logos/html-logo.png" },
         { name: "CSS", icon: "/logos/css-logo.png" },
         {
@@ -194,11 +200,24 @@ const Skills = () => {
       skills: [
         {
           name: "Pandas",
-          icon: "/logos/pandas-logo.png",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg",
         },
-        { name: "Numpy", icon: "/logos/numpy-logo.png" },
-        { name: "PyTorch", icon: "/logos/pytorch-logo.png" },
-        { name: "OpenCV", icon: "/logos/opencv-logo.png" },
+        {
+          name: "Numpy",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg",
+        },
+        {
+          name: "PyTorch",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg",
+        },
+        {
+          name: "OpenCV",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg",
+        },
+        {
+          name: "Scikit-Learn",
+          icon: "https://cdn.jsdelivr.net/npm/simple-icons@3.13.0/icons/scikit-learn.svg",
+        },
       ],
     },
   ];

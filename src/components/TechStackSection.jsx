@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useTheme } from "../context/ThemeContext";
 import { Code, Server } from "lucide-react";
 
+// Define frontend skills
 const frontendSkills = [
   {
     name: "ReactJS",
@@ -10,7 +11,7 @@ const frontendSkills = [
   },
   {
     name: "Tailwind CSS",
-    icon: "logos/tailwind-logo.png",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
   },
   {
     name: "Java",
@@ -34,6 +35,7 @@ const frontendSkills = [
   },
 ];
 
+// Define backend skills
 const backendSkills = [
   {
     name: "MySQL",
@@ -65,6 +67,7 @@ const backendSkills = [
   },
 ];
 
+// Scrolling skills component
 const ScrollingSkills = ({
   skills,
   direction = "left",
@@ -72,6 +75,14 @@ const ScrollingSkills = ({
   category,
 }) => {
   const { isDarkMode } = useTheme();
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsSmallScreen(window.innerWidth < 1024);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <div className="mb-6">
@@ -96,20 +107,26 @@ const ScrollingSkills = ({
         </h4>
       </div>
 
-      <div className="overflow-hidden py-2 relative">
+      <div className="overflow-x-auto overflow-hidden py-2 relative w-full">
         <motion.div
-          className="flex items-center space-x-4"
-          animate={{
-            x: direction === "left" ? [0, -1920] : [-1920, 0],
-          }}
-          transition={{
-            x: {
-              repeat: Infinity,
-              repeatType: "loop",
-              duration: speed,
-              ease: "linear",
-            },
-          }}
+          className="flex items-center space-x-4 w-max"
+          animate={
+            !isSmallScreen
+              ? { x: direction === "left" ? [0, -1920] : [-1920, 0] }
+              : {}
+          }
+          transition={
+            !isSmallScreen
+              ? {
+                  x: {
+                    repeat: Infinity,
+                    repeatType: "loop",
+                    duration: speed,
+                    ease: "linear",
+                  },
+                }
+              : {}
+          }
         >
           {[...skills, ...skills, ...skills].map((skill, index) => (
             <motion.div
@@ -123,13 +140,7 @@ const ScrollingSkills = ({
                   ? "bg-white hover:bg-blue-50"
                   : "bg-white hover:bg-purple-50"
               } shadow-md transition-all duration-300 hover:shadow-lg w-36 h-14`}
-              whileHover={{
-                y: -5,
-                scale: 1.05,
-                boxShadow: isDarkMode
-                  ? "0 10px 15px -3px rgba(0, 0, 0, 0.3)"
-                  : "0 10px 15px -3px rgba(0, 0, 0, 0.1)",
-              }}
+              whileHover={{ y: -5, scale: 1.05 }}
             >
               <div className="w-8 h-8 overflow-hidden rounded-md flex items-center justify-center mr-3">
                 <img
@@ -137,8 +148,7 @@ const ScrollingSkills = ({
                   alt={`${skill.name} logo`}
                   className="w-full h-full object-contain"
                   onError={(e) => {
-                    e.currentTarget.src =
-                      "https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80";
+                    e.currentTarget.src = "https://via.placeholder.com/32";
                   }}
                 />
               </div>
@@ -157,6 +167,7 @@ const ScrollingSkills = ({
   );
 };
 
+// Tech Stack Section Component
 const TechStackSection = () => {
   const { isDarkMode } = useTheme();
 
@@ -166,12 +177,12 @@ const TechStackSection = () => {
         isDarkMode
           ? "bg-gradient-to-br from-gray-800 to-gray-900"
           : "bg-gradient-to-br from-blue-50 to-indigo-50"
-      } rounded-xl shadow-lg relative overflow-hidden`}
+      }
+        rounded-xl shadow-lg relative overflow-hidden`}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden opacity-10">
         {Array.from({ length: 30 }).map((_, i) => (
           <div
