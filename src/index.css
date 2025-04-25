@@ -157,13 +157,6 @@ html {
     animation: pulse 2s ease-in-out infinite;
 }
 
-.animate-shimmer {
-    background: linear-gradient(90deg,
-            rgba(59, 130, 246, 0.4));
-    background-size: 200% 100%;
-    animation: shimmer 4s infinite;
-}
-
 .animate-rotate {
     animation: rotate 10s linear infinite;
 }
